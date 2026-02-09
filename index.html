@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>常见故障排除指南</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, #2c3e50, #4a6491);
+            color: white;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .search-container {
+            display: flex;
+            justify-content: center;
+            margin: 25px 0;
+        }
+        
+        .search-box {
+            width: 100%;
+            max-width: 600px;
+            position: relative;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .search-box input:focus {
+            outline: none;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .search-box i {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+            font-size: 1.2rem;
+        }
+        
+        .categories {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .category-btn {
+            padding: 12px 25px;
+            background-color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .category-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .category-btn.active {
+            background-color: #3498db;
+            color: white;
+        }
+        
+        .issues-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .issue-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .issue-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .issue-header {
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .issue-category {
+            display: inline-block;
+            padding: 5px 12px;
+            background-color: #e3f2fd;
+            color: #1976d2;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .issue-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #2c3e50;
+        }
+        
+        .issue-description {
+            color: #666;
+            font-size: 0.95rem;
+        }
+        
+        .issue-content {
+            padding: 20px;
+            flex-grow: 1;
+        }
+        
+        .solution-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #27ae60;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .solution-steps {
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .solution-steps li {
+            margin-bottom: 8px;
+            position: relative;
+        }
+        
+        .solution-steps li:before {
+            content: "✓";
+            position: absolute;
+            left: -20px;
+            color: #27ae60;
+            font-weight: bold;
+        }
+        
+        .warning {
+            background-color: #fff8e1;
+            border-left: 4px solid #ffc107;
+            padding: 12px 15px;
+            margin-top: 15px;
+            border-radius: 0 4px 4px 0;
+            font-size: 0.9rem;
+        }
+        
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 40px;
+            color: #7f8c8d;
+            font-size: 1.2rem;
+            display: none;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            border-top: 1px solid #eee;
+            margin-top: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .issues-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .categories {
+                gap: 10px;
+            }
+            
+            .category-btn {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+            
+            header h1 {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+            
+            header {
+                padding: 20px 15px;
+            }
+            
+            .search-box input {
+                padding: 12px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-tools"></i> 常见故障排除指南</h1>
+            <p>快速查找常见问题的解决方法，涵盖电脑、网络、软件和设备故障</p>
+        </header>
+        
+        <div class="search-container">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="搜索故障或解决方案...">
+                <i class="fas fa-search"></i>
+            </div>
+        </div>
+        
+        <div class="categories">
+            <button class="category-btn active" data-category="all">
+                <i class="fas fa-th-large"></i> 全部
+            </button>
+            <button class="category-btn" data-category="computer">
+                <i class="fas fa-desktop"></i> 电脑故障
+            </button>
+            <button class="category-btn" data-category="network">
+                <i class="fas fa-wifi"></i> 网络问题
+            </button>
+            <button class="category-btn" data-category="software">
+                <i class="fas fa-code"></i> 软件错误
+            </button>
+            <button class="category-btn" data-category="device">
+                <i class="fas fa-mobile-alt"></i> 设备问题
+            </button>
+        </div>
+        
+        <div class="issues-container" id="issuesContainer">
+            <!-- 故障卡片将通过JavaScript动态生成 -->
+        </div>
+        
+        <div class="no-results" id="noResults">
+            <i class="fas fa-search fa-2x" style="margin-bottom: 15px;"></i>
+            <p>未找到匹配的故障或解决方案，请尝试其他关键词。</p>
+        </div>
+        
+        <footer>
+            <p>故障排除指南 &copy; 2023 | 本页面仅供参考，具体问题请咨询专业人士</p>
+        </footer>
+    </div>
+
+    <script>
+        // 故障数据
+        const issuesData = [
+            {
+                id: 1,
+                category: "computer",
+                title: "电脑无法开机",
+                description: "按下电源按钮后电脑没有任何反应，指示灯不亮",
+                solution: {
+                    steps: [
+                        "检查电源线是否连接牢固，尝试更换电源插座",
+                        "检查电源按钮是否正常，尝试直接短接主板上的电源针脚",
+                        "断开所有外接设备（USB设备、显示器等）后尝试开机",
+                        "如果使用的是台式机，检查电源供应器是否正常工作"
+                    ],
+                    warning: "如果以上步骤都无法解决问题，可能是主板或电源故障，建议联系专业人员"
+                }
+            },
+            {
+                id: 2,
+                category: "network",
+                title: "Wi-Fi连接不稳定",
+                description: "无线网络时断时续，网速忽快忽慢",
+                solution: {
+                    steps: [
+                        "重启路由器和调制解调器，等待1分钟后再重新开启",
+                        "检查是否有其他电子设备干扰（如微波炉、无线电话等）",
+                        "尝试更改Wi-Fi信道，避免与邻居的Wi-Fi信道冲突",
+                        "将设备靠近路由器，或考虑使用Wi-Fi信号放大器"
+                    ],
+                    warning: "如果所有设备都有此问题，可能是路由器故障；如果仅单一设备有问题，可能是该设备的无线网卡故障"
+                }
+            },
+            {
+                id: 3,
+                category: "software",
+                title: "软件频繁崩溃",
+                description: "打开特定软件时经常无响应或自动关闭",
+                solution: {
+                    steps: [
+                        "尝试重启软件，如果问题依旧，重启计算机",
+                        "检查软件是否有更新版本，升级到最新版",
+                        "卸载并重新安装该软件",
+                        "检查是否与其他软件冲突，尝试在干净启动环境下运行"
+                    ],
+                    warning: "如果软件崩溃导致数据丢失，请先尝试恢复自动保存的备份文件"
+                }
+            },
+            {
+                id: 4,
+                category: "device",
+                title: "打印机无法打印",
+                description: "发送打印任务后打印机没有反应或显示错误",
+                solution: {
+                    steps: [
+                        "检查打印机电源和连接线是否正常",
+                        "检查打印机是否缺纸或缺墨",
+                        "清除打印机队列中的所有任务，然后重新打印",
+                        "重新安装打印机驱动程序"
+                    ],
+                    warning: "如果是网络打印机，请确保打印机和计算机在同一网络内"
+                }
+            },
+            {
+                id: 5,
+                category: "computer",
+                title: "电脑运行缓慢",
+                description: "系统响应慢，程序打开时间长，操作卡顿",
+                solution: {
+                    steps: [
+                        "检查任务管理器，关闭占用资源过多的程序",
+                        "运行磁盘清理工具，删除临时文件和无用文件",
+                        "增加内存（RAM）或考虑升级固态硬盘（SSD）",
+                        "执行病毒和恶意软件扫描"
+                    ],
+                    warning: "定期维护电脑可以避免性能下降，建议每月执行一次磁盘清理和碎片整理"
+                }
+            },
+            {
+                id: 6,
+                category: "network",
+                title: "无法访问特定网站",
+                description: "部分网站打不开，但其他网站可以正常访问",
+                solution: {
+                    steps: [
+                        "尝试使用其他浏览器访问同一网站",
+                        "清除浏览器缓存和Cookie",
+                        "检查防火墙或安全软件是否阻止了该网站",
+                        "尝试更改DNS服务器（如使用8.8.8.8和8.8.4.4）"
+                    ],
+                    warning: "如果使用VPN，请尝试关闭VPN后访问；如果网站被当地封锁，可能需要使用代理"
+                }
+            },
+            {
+                id: 7,
+                category: "software",
+                title: "操作系统更新失败",
+                description: "系统更新过程中出现错误，无法完成更新",
+                solution: {
+                    steps: [
+                        "确保有足够的磁盘空间（至少20GB可用空间）",
+                        "暂时关闭防病毒软件和防火墙",
+                        "运行Windows更新疑难解答（针对Windows系统）",
+                        "手动下载更新包并离线安装"
+                    ],
+                    warning: "在进行重大更新前，请务必备份重要数据，以防更新失败导致数据丢失"
+                }
+            },
+            {
+                id: 8,
+                category: "device",
+                title: "手机电池耗电过快",
+                description: "手机电池电量下降迅速，需要频繁充电",
+                solution: {
+                    steps: [
+                        "检查电池使用情况，找出耗电最多的应用",
+                        "降低屏幕亮度，缩短屏幕自动关闭时间",
+                        "关闭不必要的后台应用和定位服务",
+                        "启用省电模式，关闭动画和视觉效果"
+                    ],
+                    warning: "如果电池已使用超过2年，可能是电池老化，建议更换电池"
+                }
+            }
+        ];
+
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            const issuesContainer = document.getElementById('issuesContainer');
+            const searchInput = document.getElementById('searchInput');
+            const categoryButtons = document.querySelectorAll('.category-btn');
+            const noResults = document.getElementById('noResults');
+            
+            let activeCategory = 'all';
+            let searchQuery = '';
+            
+            // 初始渲染所有故障
+            renderIssues(issuesData);
+            
+            // 分类按钮点击事件
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // 更新活动按钮
+                    categoryButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // 获取选择的分类
+                    activeCategory = this.getAttribute('data-category');
+                    
+                    // 过滤并渲染故障
+                    filterIssues();
+                });
+            });
+            
+            // 搜索框输入事件
+            searchInput.addEventListener('input', function() {
+                searchQuery = this.value.toLowerCase().trim();
+                filterIssues();
+            });
+            
+            // 过滤和渲染故障
+            function filterIssues() {
+                let filteredIssues = issuesData;
+                
+                // 按分类过滤
+                if (activeCategory !== 'all') {
+                    filteredIssues = filteredIssues.filter(issue => issue.category === activeCategory);
+                }
+                
+                // 按搜索词过滤
+                if (searchQuery !== '') {
+                    filteredIssues = filteredIssues.filter(issue => 
+                        issue.title.toLowerCase().includes(searchQuery) ||
+                        issue.description.toLowerCase().includes(searchQuery) ||
+                        issue.solution.steps.some(step => step.toLowerCase().includes(searchQuery))
+                    );
+                }
+                
+                // 渲染过滤后的故障
+                renderIssues(filteredIssues);
+                
+                // 显示/隐藏无结果消息
+                if (filteredIssues.length === 0) {
+                    noResults.style.display = 'block';
+                } else {
+                    noResults.style.display = 'none';
+                }
+            }
+            
+            // 渲染故障卡片
+            function renderIssues(issues) {
+                issuesContainer.innerHTML = '';
+                
+                issues.forEach(issue => {
+                    // 获取分类图标和颜色
+                    let categoryIcon, categoryName, categoryColor;
+                    
+                    switch(issue.category) {
+                        case 'computer':
+                            categoryIcon = 'fas fa-desktop';
+                            categoryName = '电脑故障';
+                            categoryColor = '#3498db';
+                            break;
+                        case 'network':
+                            categoryIcon = 'fas fa-wifi';
+                            categoryName = '网络问题';
+                            categoryColor = '#9b59b6';
+                            break;
+                        case 'software':
+                            categoryIcon = 'fas fa-code';
+                            categoryName = '软件错误';
+                            categoryColor = '#e74c3c';
+                            break;
+                        case 'device':
+                            categoryIcon = 'fas fa-mobile-alt';
+                            categoryName = '设备问题';
+                            categoryColor = '#2ecc71';
+                            break;
+                    }
+                    
+                    // 创建故障卡片
+                    const issueCard = document.createElement('div');
+                    issueCard.className = 'issue-card';
+                    
+                    issueCard.innerHTML = `
+                        <div class="issue-header">
+                            <div class="issue-category" style="background-color: ${categoryColor}20; color: ${categoryColor};">
+                                <i class="${categoryIcon}"></i> ${categoryName}
+                            </div>
+                            <h3 class="issue-title">${issue.title}</h3>
+                            <p class="issue-description">${issue.description}</p>
+                        </div>
+                        <div class="issue-content">
+                            <div class="solution-title">
+                                <i class="fas fa-lightbulb"></i> 解决方法
+                            </div>
+                            <ol class="solution-steps">
+                                ${issue.solution.steps.map(step => `<li>${step}</li>`).join('')}
+                            </ol>
+                            <div class="warning">
+                                <strong>注意：</strong> ${issue.solution.warning}
+                            </div>
+                        </div>
+                    `;
+                    
+                    issuesContainer.appendChild(issueCard);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
