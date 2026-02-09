@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>常见故障资料库</title>
+    <title>装车系统常见故障排除指南</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -14,7 +14,7 @@
         }
         
         body {
-            background-color: #f5f7fa;
+            background-color: #f0f4f8;
             color: #333;
             line-height: 1.6;
         }
@@ -28,7 +28,7 @@
         header {
             text-align: center;
             padding: 30px 0;
-            background: linear-gradient(135deg, #2c3e50, #4a6491);
+            background: linear-gradient(135deg, #1565c0, #1e88e5);
             color: white;
             border-radius: 10px;
             margin-bottom: 30px;
@@ -45,6 +45,44 @@
             opacity: 0.9;
             max-width: 800px;
             margin: 0 auto;
+        }
+        
+        .system-overview {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .system-overview h2 {
+            color: #1565c0;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .system-diagram {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        
+        .diagram-item {
+            text-align: center;
+            padding: 15px;
+            margin: 0 10px;
+            border-radius: 8px;
+            background-color: #f5f9ff;
+            width: 150px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+        }
+        
+        .diagram-item i {
+            font-size: 2rem;
+            color: #1e88e5;
+            margin-bottom: 10px;
         }
         
         .search-container {
@@ -111,7 +149,7 @@
         }
         
         .category-btn.active {
-            background-color: #3498db;
+            background-color: #1e88e5;
             color: white;
         }
         
@@ -131,6 +169,7 @@
             height: 100%;
             display: flex;
             flex-direction: column;
+            border-top: 4px solid #1e88e5;
         }
         
         .issue-card:hover {
@@ -148,7 +187,7 @@
             display: inline-block;
             padding: 5px 12px;
             background-color: #e3f2fd;
-            color: #1976d2;
+            color: #1565c0;
             border-radius: 20px;
             font-size: 0.85rem;
             font-weight: 600;
@@ -175,7 +214,7 @@
         .solution-title {
             font-size: 1.1rem;
             font-weight: 600;
-            color: #27ae60;
+            color: #2e7d32;
             margin-bottom: 10px;
             display: flex;
             align-items: center;
@@ -196,8 +235,32 @@
             content: "✓";
             position: absolute;
             left: -20px;
-            color: #27ae60;
+            color: #2e7d32;
             font-weight: bold;
+        }
+        
+        .priority {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+        
+        .priority-high {
+            background-color: #ffebee;
+            color: #c62828;
+        }
+        
+        .priority-medium {
+            background-color: #fff3e0;
+            color: #f57c00;
+        }
+        
+        .priority-low {
+            background-color: #e8f5e9;
+            color: #2e7d32;
         }
         
         .warning {
@@ -216,6 +279,41 @@
             color: #7f8c8d;
             font-size: 1.2rem;
             display: none;
+        }
+        
+        .emergency-section {
+            background-color: #ffebee;
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 30px;
+            border-left: 6px solid #d32f2f;
+        }
+        
+        .emergency-section h2 {
+            color: #d32f2f;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .emergency-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .emergency-step {
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+        }
+        
+        .emergency-step i {
+            color: #d32f2f;
+            margin-right: 10px;
         }
         
         footer {
@@ -244,6 +342,16 @@
             header h1 {
                 font-size: 2rem;
             }
+            
+            .diagram-item {
+                width: 120px;
+                margin: 0 5px;
+                padding: 10px;
+            }
+            
+            .emergency-steps {
+                grid-template-columns: 1fr;
+            }
         }
         
         @media (max-width: 480px) {
@@ -264,32 +372,60 @@
 <body>
     <div class="container">
         <header>
-            <h1><i class="fas fa-tools"></i> 常见故障资料库</h1>
-            <p>快速查找常见问题的解决方法，涵盖电脑、网络、软件和设备故障</p>
+            <h1><i class="fas fa-robot"></i> 装车系统常见故障排除指南</h1>
+            <p>工业机器人、输送皮带及相关设备的常见故障诊断与解决方案</p>
         </header>
+        
+        <div class="system-overview">
+            <h2><i class="fas fa-industry"></i> 系统概览</h2>
+            <p>本页面涵盖工业机器人系统及物料输送系统的常见故障，包括网络通信、电机过载、堵料检测和安全系统故障等。</p>
+            
+            <div class="system-diagram">
+                <div class="diagram-item">
+                    <i class="fas fa-robot"></i>
+                    <div>机器人系统</div>
+                </div>
+                <div class="diagram-item">
+                    <i class="fas fa-exchange-alt"></i>
+                    <div>抓取模块</div>
+                </div>
+                <div class="diagram-item">
+                    <i class="fas fa-cogs"></i>
+                    <div>电机驱动</div>
+                </div>
+                <div class="diagram-item">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <div>输送皮带</div>
+                </div>
+                <div class="diagram-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <div>安全系统</div>
+                </div>
+            </div>
+        </div>
         
         <div class="search-container">
             <div class="search-box">
-                <input type="text" id="searchInput" placeholder="搜索故障或解决方案...">
+                <input type="text" id="searchInput" placeholder="搜索故障名称或关键词...">
                 <i class="fas fa-search"></i>
             </div>
         </div>
         
         <div class="categories">
             <button class="category-btn active" data-category="all">
-                <i class="fas fa-th-large"></i> 全部
-            </button>
-            <button class="category-btn" data-category="computer">
-                <i class="fas fa-desktop"></i> 电脑故障
+                <i class="fas fa-th-large"></i> 全部故障
             </button>
             <button class="category-btn" data-category="network">
-                <i class="fas fa-wifi"></i> 网络问题
+                <i class="fas fa-network-wired"></i> 网络故障
             </button>
-            <button class="category-btn" data-category="software">
-                <i class="fas fa-code"></i> 软件错误
+            <button class="category-btn" data-category="motor">
+                <i class="fas fa-cog"></i> 电机过载
             </button>
-            <button class="category-btn" data-category="device">
-                <i class="fas fa-mobile-alt"></i> 设备问题
+            <button class="category-btn" data-category="blockage">
+                <i class="fas fa-exclamation-triangle"></i> 堵料故障
+            </button>
+            <button class="category-btn" data-category="safety">
+                <i class="fas fa-shield-alt"></i> 安全故障
             </button>
         </div>
         
@@ -299,135 +435,239 @@
         
         <div class="no-results" id="noResults">
             <i class="fas fa-search fa-2x" style="margin-bottom: 15px;"></i>
-            <p>未找到匹配的故障或解决方案，请尝试其他关键词。</p>
+            <p>未找到匹配的故障，请尝试其他关键词。</p>
+        </div>
+        
+        <div class="emergency-section">
+            <h2><i class="fas fa-exclamation-circle"></i> 紧急处理流程</h2>
+            <p>发生以下情况时，请立即执行紧急处理：</p>
+            <div class="emergency-steps">
+                <div class="emergency-step">
+                    <i class="fas fa-hand-paper"></i> 立即按下急停按钮
+                </div>
+                <div class="emergency-step">
+                    <i class="fas fa-bell"></i> 通知现场负责人和设备维护人员
+                </div>
+                <div class="emergency-step">
+                    <i class="fas fa-exclamation-triangle"></i> 设置警示标识，防止他人误操作
+                </div>
+                <div class="emergency-step">
+                    <i class="fas fa-file-alt"></i> 记录故障发生时间和现象
+                </div>
+            </div>
         </div>
         
         <footer>
-            <p>故障排除指南 &copy; 2023 | 本页面仅供参考，具体问题请咨询专业人士</p>
+            <p>工业设备故障排除指南 &copy; 2023 | 请注意：处理电气和机械设备时，请务必遵守安全操作规程</p>
         </footer>
     </div>
 
     <script>
-        // 故障数据
+        // 故障数据 - 根据用户提供的故障列表
         const issuesData = [
             {
                 id: 1,
-                category: "computer",
-                title: "电脑无法开机",
-                description: "按下电源按钮后电脑没有任何反应，指示灯不亮",
+                category: "network",
+                title: "机器人网络故障",
+                description: "机器人控制器与主控制系统通信中断",
+                priority: "high",
                 solution: {
                     steps: [
-                        "检查电源线是否连接牢固，尝试更换电源插座",
-                        "检查电源按钮是否正常，尝试直接短接主板上的电源针脚",
-                        "断开所有外接设备（USB设备、显示器等）后尝试开机",
-                        "如果使用的是台式机，检查电源供应器是否正常工作"
+                        "检查机器人控制器网络指示灯状态",
+                        "检查网线连接是否松动或损坏",
+                        "重启机器人控制器网络模块",
+                        "检查主控制系统网络设置，确保IP地址配置正确",
+                        "使用网络测试工具检查网络连通性"
                     ],
-                    warning: "如果以上步骤都无法解决问题，可能是主板或电源故障，建议联系专业人员"
+                    warning: "网络故障可能导致生产中断，需优先处理。如无法解决，联系网络工程师。"
                 }
             },
             {
                 id: 2,
                 category: "network",
-                title: "Wi-Fi连接不稳定",
-                description: "无线网络时断时续，网速忽快忽慢",
+                title: "机器人抓手模块网络故障",
+                description: "机器人末端执行器通信异常",
+                priority: "high",
                 solution: {
                     steps: [
-                        "重启路由器和调制解调器，等待1分钟后再重新开启",
-                        "检查是否有其他电子设备干扰（如微波炉、无线电话等）",
-                        "尝试更改Wi-Fi信道，避免与邻居的Wi-Fi信道冲突",
-                        "将设备靠近路由器，或考虑使用Wi-Fi信号放大器"
+                        "检查抓手模块电源连接",
+                        "检查抓手模块通信线缆是否完好",
+                        "重启机器人抓手模块",
+                        "检查机器人I/O配置，确保抓手模块地址正确",
+                        "检查抓手模块传感器状态"
                     ],
-                    warning: "如果所有设备都有此问题，可能是路由器故障；如果仅单一设备有问题，可能是该设备的无线网卡故障"
+                    warning: "抓手模块故障可能导致物料抓取失败，检查时注意安全。"
                 }
             },
             {
                 id: 3,
-                category: "software",
-                title: "软件频繁崩溃",
-                description: "打开特定软件时经常无响应或自动关闭",
+                category: "motor",
+                title: "抓取皮带电机过载",
+                description: "抓取皮带驱动电机电流异常升高",
+                priority: "high",
                 solution: {
                     steps: [
-                        "尝试重启软件，如果问题依旧，重启计算机",
-                        "检查软件是否有更新版本，升级到最新版",
-                        "卸载并重新安装该软件",
-                        "检查是否与其他软件冲突，尝试在干净启动环境下运行"
+                        "立即停止抓取皮带运行",
+                        "检查皮带是否有异物卡阻",
+                        "检查皮带张紧度是否合适",
+                        "检查电机轴承是否损坏",
+                        "检查电机驱动器参数设置",
+                        "等待电机冷却后重新启动"
                     ],
-                    warning: "如果软件崩溃导致数据丢失，请先尝试恢复自动保存的备份文件"
+                    warning: "电机持续过载可能导致电机烧毁，需彻底排除故障原因后再启动。"
                 }
             },
             {
                 id: 4,
-                category: "device",
-                title: "打印机无法打印",
-                description: "发送打印任务后打印机没有反应或显示错误",
+                category: "motor",
+                title: "接料皮带电机过载",
+                description: "接料皮带驱动电机负载异常",
+                priority: "medium",
                 solution: {
                     steps: [
-                        "检查打印机电源和连接线是否正常",
-                        "检查打印机是否缺纸或缺墨",
-                        "清除打印机队列中的所有任务，然后重新打印",
-                        "重新安装打印机驱动程序"
+                        "检查接料皮带是否有物料堆积",
+                        "检查皮带托辊是否转动灵活",
+                        "检查电机散热风扇是否正常工作",
+                        "检查驱动器过载保护参数设置",
+                        "减轻皮带负载后尝试重启"
                     ],
-                    warning: "如果是网络打印机，请确保打印机和计算机在同一网络内"
+                    warning: "定期清理皮带下方积料可预防此类故障。"
                 }
             },
             {
                 id: 5,
-                category: "computer",
-                title: "电脑运行缓慢",
-                description: "系统响应慢，程序打开时间长，操作卡顿",
+                category: "motor",
+                title: "转弯溜皮带电机过载",
+                description: "转弯溜槽皮带电机负载异常增加",
+                priority: "medium",
                 solution: {
                     steps: [
-                        "检查任务管理器，关闭占用资源过多的程序",
-                        "运行磁盘清理工具，删除临时文件和无用文件",
-                        "增加内存（RAM）或考虑升级固态硬盘（SSD）",
-                        "执行病毒和恶意软件扫描"
+                        "检查转弯溜槽内是否有物料堵塞",
+                        "检查皮带导向装置是否正常",
+                        "检查电机减速机润滑情况",
+                        "调整皮带跑偏装置",
+                        "清理转弯处积料"
                     ],
-                    warning: "定期维护电脑可以避免性能下降，建议每月执行一次磁盘清理和碎片整理"
+                    warning: "转弯处易积料，需定期巡检清理。"
                 }
             },
             {
                 id: 6,
-                category: "network",
-                title: "无法访问特定网站",
-                description: "部分网站打不开，但其他网站可以正常访问",
+                category: "blockage",
+                title: "抓取辊道堵料",
+                description: "抓取位置辊道物料堆积",
+                priority: "medium",
                 solution: {
                     steps: [
-                        "尝试使用其他浏览器访问同一网站",
-                        "清除浏览器缓存和Cookie",
-                        "检查防火墙或安全软件是否阻止了该网站",
-                        "尝试更改DNS服务器（如使用8.8.8.8和8.8.4.4）"
+                        "立即停止上游供料设备",
+                        "手动清理堵料区域",
+                        "检查辊道驱动链条是否正常",
+                        "检查辊道间距是否合适",
+                        "检查物料尺寸是否符合规格"
                     ],
-                    warning: "如果使用VPN，请尝试关闭VPN后访问；如果网站被当地封锁，可能需要使用代理"
+                    warning: "清理堵料时务必断电并挂牌，防止设备意外启动。"
                 }
             },
             {
                 id: 7,
-                category: "software",
-                title: "操作系统更新失败",
-                description: "系统更新过程中出现错误，无法完成更新",
+                category: "blockage",
+                title: "抓取皮带堵料",
+                description: "抓取皮带物料堆积导致停转",
+                priority: "medium",
                 solution: {
                     steps: [
-                        "确保有足够的磁盘空间（至少20GB可用空间）",
-                        "暂时关闭防病毒软件和防火墙",
-                        "运行Windows更新疑难解答（针对Windows系统）",
-                        "手动下载更新包并离线安装"
+                        "停止抓取皮带及上游设备",
+                        "反向点动皮带清除积料",
+                        "检查皮带刮板是否完好",
+                        "检查物料湿度是否过高",
+                        "调整给料量，避免超载"
                     ],
-                    warning: "在进行重大更新前，请务必备份重要数据，以防更新失败导致数据丢失"
+                    warning: "堵料可能导致皮带撕裂，需及时处理。"
                 }
             },
             {
                 id: 8,
-                category: "device",
-                title: "手机电池耗电过快",
-                description: "手机电池电量下降迅速，需要频繁充电",
+                category: "blockage",
+                title: "溜槽出口堵料",
+                description: "溜槽出口物料堵塞无法下落",
+                priority: "low",
                 solution: {
                     steps: [
-                        "检查电池使用情况，找出耗电最多的应用",
-                        "降低屏幕亮度，缩短屏幕自动关闭时间",
-                        "关闭不必要的后台应用和定位服务",
-                        "启用省电模式，关闭动画和视觉效果"
+                        "停止上游供料",
+                        "使用专用工具清理溜槽",
+                        "检查溜槽衬板是否磨损",
+                        "检查物料流动性是否符合要求",
+                        "考虑增加振动器或空气炮"
                     ],
-                    warning: "如果电池已使用超过2年，可能是电池老化，建议更换电池"
+                    warning: "清理高空溜槽时需使用安全带等防护措施。"
+                }
+            },
+            {
+                id: 9,
+                category: "blockage",
+                title: "溜槽入口堵料",
+                description: "溜槽入口物料堆积导致堵塞",
+                priority: "low",
+                solution: {
+                    steps: [
+                        "停止上游供料设备",
+                        "检查入口格栅是否完好",
+                        "检查物料中是否有大块异物",
+                        "调整物料下落角度",
+                        "清理入口区域积料"
+                    ],
+                    warning: "定期检查溜槽磨损情况，及时更换衬板。"
+                }
+            },
+            {
+                id: 10,
+                category: "safety",
+                title: "机器人急停故障",
+                description: "机器人急停按钮被触发或故障",
+                priority: "high",
+                solution: {
+                    steps: [
+                        "确认急停按钮是否被按下",
+                        "顺时针旋转释放急停按钮",
+                        "检查急停回路接线是否松动",
+                        "检查安全继电器状态",
+                        "按照复位流程重新启动机器人"
+                    ],
+                    warning: "急停复位前必须确认危险已排除，人员处于安全位置。"
+                }
+            },
+            {
+                id: 11,
+                category: "safety",
+                title: "气压故障",
+                description: "系统气压不足或压力异常",
+                priority: "high",
+                solution: {
+                    steps: [
+                        "检查空压机是否正常运行",
+                        "检查气路是否有泄漏",
+                        "检查过滤器是否需要更换",
+                        "检查减压阀设置是否正确",
+                        "检查储气罐压力是否正常"
+                    ],
+                    warning: "气压不足可能导致气动元件失效，影响设备安全。"
+                }
+            },
+            {
+                id: 12,
+                category: "safety",
+                title: "安全继电器失电",
+                description: "安全回路断开，设备无法启动",
+                priority: "high",
+                solution: {
+                    steps: [
+                        "检查所有安全门开关是否闭合",
+                        "检查光栅/安全扫描仪是否被遮挡",
+                        "检查急停回路是否正常",
+                        "检查安全继电器电源",
+                        "检查安全回路接线端子"
+                    ],
+                    warning: "安全回路故障必须彻底排除，严禁短接安全装置。"
                 }
             }
         ];
@@ -499,36 +739,60 @@
             function renderIssues(issues) {
                 issuesContainer.innerHTML = '';
                 
+                // 按优先级排序（高优先级在前）
+                issues.sort((a, b) => {
+                    const priorityOrder = {high: 1, medium: 2, low: 3};
+                    return priorityOrder[a.priority] - priorityOrder[b.priority];
+                });
+                
                 issues.forEach(issue => {
-                    // 获取分类图标和颜色
+                    // 获取分类信息
                     let categoryIcon, categoryName, categoryColor;
                     
                     switch(issue.category) {
-                        case 'computer':
-                            categoryIcon = 'fas fa-desktop';
-                            categoryName = '电脑故障';
-                            categoryColor = '#3498db';
-                            break;
                         case 'network':
-                            categoryIcon = 'fas fa-wifi';
-                            categoryName = '网络问题';
-                            categoryColor = '#9b59b6';
+                            categoryIcon = 'fas fa-network-wired';
+                            categoryName = '网络故障';
+                            categoryColor = '#9c27b0';
                             break;
-                        case 'software':
-                            categoryIcon = 'fas fa-code';
-                            categoryName = '软件错误';
-                            categoryColor = '#e74c3c';
+                        case 'motor':
+                            categoryIcon = 'fas fa-cog';
+                            categoryName = '电机过载';
+                            categoryColor = '#ff9800';
                             break;
-                        case 'device':
-                            categoryIcon = 'fas fa-mobile-alt';
-                            categoryName = '设备问题';
-                            categoryColor = '#2ecc71';
+                        case 'blockage':
+                            categoryIcon = 'fas fa-exclamation-triangle';
+                            categoryName = '堵料故障';
+                            categoryColor = '#f44336';
+                            break;
+                        case 'safety':
+                            categoryIcon = 'fas fa-shield-alt';
+                            categoryName = '安全故障';
+                            categoryColor = '#4caf50';
+                            break;
+                    }
+                    
+                    // 获取优先级显示
+                    let priorityText, priorityClass;
+                    switch(issue.priority) {
+                        case 'high':
+                            priorityText = '高优先级';
+                            priorityClass = 'priority-high';
+                            break;
+                        case 'medium':
+                            priorityText = '中优先级';
+                            priorityClass = 'priority-medium';
+                            break;
+                        case 'low':
+                            priorityText = '低优先级';
+                            priorityClass = 'priority-low';
                             break;
                     }
                     
                     // 创建故障卡片
                     const issueCard = document.createElement('div');
                     issueCard.className = 'issue-card';
+                    issueCard.style.borderTopColor = categoryColor;
                     
                     issueCard.innerHTML = `
                         <div class="issue-header">
@@ -537,16 +801,17 @@
                             </div>
                             <h3 class="issue-title">${issue.title}</h3>
                             <p class="issue-description">${issue.description}</p>
+                            <div class="priority ${priorityClass}">${priorityText}</div>
                         </div>
                         <div class="issue-content">
                             <div class="solution-title">
-                                <i class="fas fa-lightbulb"></i> 解决方法
+                                <i class="fas fa-wrench"></i> 解决步骤
                             </div>
                             <ol class="solution-steps">
                                 ${issue.solution.steps.map(step => `<li>${step}</li>`).join('')}
                             </ol>
                             <div class="warning">
-                                <strong>注意：</strong> ${issue.solution.warning}
+                                <strong>注意事项：</strong> ${issue.solution.warning}
                             </div>
                         </div>
                     `;
