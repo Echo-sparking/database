@@ -40,6 +40,7 @@
             max-width: 800px;
             margin: 0 auto;
             position: relative;
+            padding-right: 60px; /* 为返回按钮留出空间 */
         }
         
         header h1 {
@@ -62,26 +63,25 @@
             background-color: rgba(255, 255, 255, 0.2);
             color: white;
             border: 2px solid rgba(255, 255, 255, 0.3);
-            padding: 12px 24px;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
-            gap: 8px;
+            justify-content: center;
+            cursor: pointer;
             transition: all 0.3s ease;
-            text-decoration: none;
+            font-size: 1.5rem;
         }
         
         .back-btn:hover {
             background-color: rgba(255, 255, 255, 0.3);
-            transform: translateY(-50%) translateX(-5px);
+            transform: translateY(-50%) scale(1.1);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
         
         .back-btn:active {
-            transform: translateY(-50%) translateX(0);
+            transform: translateY(-50%) scale(0.95);
         }
         
         .search-container {
@@ -283,19 +283,13 @@
             }
             
             .back-btn {
-                position: relative;
-                right: auto;
-                top: auto;
-                transform: none;
-                margin: 20px auto 0;
-                width: fit-content;
-                display: inline-flex;
+                width: 45px;
+                height: 45px;
+                font-size: 1.3rem;
             }
             
             .header-content {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
+                padding-right: 55px;
             }
         }
         
@@ -313,8 +307,13 @@
             }
             
             .back-btn {
-                padding: 10px 20px;
-                font-size: 0.9rem;
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+            
+            .header-content {
+                padding-right: 50px;
             }
         }
     </style>
@@ -325,8 +324,8 @@
             <div class="header-content">
                 <h1><i class="fas fa-tools"></i> 装车系统常见故障排除指南</h1>
                 <p>快速查找常见问题的解决方法，涵盖电脑、网络、软件和设备故障</p>
-                <button id="backButton" class="back-btn">
-                    <i class="fas fa-arrow-left"></i> 返回上一级
+                <button id="backButton" class="back-btn" aria-label="返回上一级">
+                    <i class="fas fa-arrow-left"></i>
                 </button>
             </div>
         </header>
