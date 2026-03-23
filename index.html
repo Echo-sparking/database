@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>常见故障排除指南</title>
+    <title>装车系统常见故障排除指南</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -323,7 +323,7 @@
         <header>
             <div class="header-content">
                 <h1><i class="fas fa-tools"></i> 装车系统常见故障排除指南</h1>
-                <p>快速查找常见问题的解决方法，涵盖电脑、网络、软件和设备故障</p>
+                <p>快速查找常见问题的解决方法，涵盖堵料报警、机器人故障、车辆检测故障等</p>
                 <button id="backButton" class="back-btn" aria-label="返回上一级">
                     <i class="fas fa-arrow-left"></i>
                 </button>
@@ -341,17 +341,20 @@
             <button class="category-btn active" data-category="all">
                 <i class="fas fa-th-large"></i> 全部
             </button>
-            <button class="category-btn" data-category="computer">
-                <i class="fas fa-desktop"></i> 电脑故障
+            <button class="category-btn" data-category="blockage">
+                <i class="fas fa-exclamation-triangle"></i> 堵料报警
             </button>
-            <button class="category-btn" data-category="network">
-                <i class="fas fa-wifi"></i> 网络问题
+            <button class="category-btn" data-category="robot">
+                <i class="fas fa-robot"></i> 机器人故障
             </button>
-            <button class="category-btn" data-category="software">
-                <i class="fas fa-code"></i> 软件错误
+            <button class="category-btn" data-category="vehicle">
+                <i class="fas fa-truck"></i> 车辆检测故障
             </button>
-            <button class="category-btn" data-category="device">
-                <i class="fas fa-mobile-alt"></i> 设备问题
+            <button class="category-btn" data-category="belt">
+                <i class="fas fa-cogs"></i> 皮带过载故障
+            </button>
+            <button class="category-btn" data-category="other">
+                <i class="fas fa-tools"></i> 其他故障
             </button>
         </div>
         
@@ -365,131 +368,234 @@
         </div>
         
         <footer>
-            <p>故障排除指南 &copy; 2023 | 本页面仅供参考，具体问题请咨询专业人士</p>
+            <p>故障排除指南 &copy; 2026 | 本页面仅供参考，具体问题请咨询专业人士</p>
         </footer>
     </div>
 
     <script>
-        // 故障数据
+        // 使用操作手册内容的故障数据
         const issuesData = [
             {
                 id: 1,
-                category: "computer",
-                title: "电脑无法开机",
-                description: "按下电源按钮后电脑没有任何反应，指示灯不亮",
+                category: "blockage",
+                title: "堵料报警",
+                description: "处理各种堵料报警问题，包括抓取辊道、抓取皮带、斜皮带出口堵料",
                 solution: {
                     steps: [
-                        "检查电源线是否连接牢固，尝试更换电源插座",
-                        "检查电源按钮是否正常，尝试直接短接主板上的电源针脚",
-                        "断开所有外接设备（USB设备、显示器等）后尝试开机",
-                        "如果使用的是台式机，检查电源供应器是否正常工作"
+                        "排查对射开关是否正对上",
+                        "排查是否有水泥包或者其他东西遮挡",
+                        "未堵料，请检查对射开关镜面是否积灰，清灰处理并吹气",
+                        "检查吹气装置是否正对对射开关正面",
+                        "检查传感器是否正常"
                     ],
-                    warning: "如果以上步骤都无法解决问题，可能是主板或电源故障，建议联系专业人员"
+                    warning: "注意：堵料报警分为抓取辊道堵料、抓取皮带堵料、斜皮带出口堵料，需根据不同位置排查对应对射开关"
                 }
             },
             {
                 id: 2,
-                category: "network",
-                title: "Wi-Fi连接不稳定",
-                description: "无线网络时断时续，网速忽快忽慢",
+                category: "robot",
+                title: "机器人故障",
+                description: "机器人故障排查与处理方法",
                 solution: {
                     steps: [
-                        "重启路由器和调制解调器，等待1分钟后再重新开启",
-                        "检查是否有其他电子设备干扰（如微波炉、无线电话等）",
-                        "尝试更改Wi-Fi信道，避免与邻居的Wi-Fi信道冲突",
-                        "将设备靠近路由器，或考虑使用Wi-Fi信号放大器"
+                        "机器人故障需要去机器人示教器上排查机器人具体故障"
                     ],
-                    warning: "如果所有设备都有此问题，可能是路由器故障；如果仅单一设备有问题，可能是该设备的无线网卡故障"
+                    warning: "注意：请确保操作人员具备机器人操作资质，按照安全规程操作"
                 }
             },
             {
                 id: 3,
-                category: "software",
-                title: "软件频繁崩溃",
-                description: "打开特定软件时经常无响应或自动关闭",
+                category: "vehicle",
+                title: "车辆检测故障",
+                description: "车辆检测相关故障排查，包括车辆数据、车厢检测等问题",
                 solution: {
                     steps: [
-                        "尝试重启软件，如果问题依旧，重启计算机",
-                        "检查软件是否有更新版本，升级到最新版",
-                        "卸载并重新安装该软件",
-                        "检查是否与其他软件冲突，尝试在干净启动环境下运行"
+                        "检查车辆数据是否在允许装车范围内",
+                        "检查车厢内是否有其他影响检测的装置",
+                        "检查时，观察抓手点激光是否正常打到车厢栏板",
+                        "检查抓手点激光是否积灰严重，导致检测数据不对",
+                        "检查传感器是否正常"
                     ],
-                    warning: "如果软件崩溃导致数据丢失，请先尝试恢复自动保存的备份文件"
+                    warning: "注意：车辆检测故障包括车辆长宽不合格、车厢数据偏差不合格、停车Y值不合格、栏板高度不合格、尾板X值不合格，需根据具体问题排查"
                 }
             },
             {
                 id: 4,
-                category: "device",
-                title: "打印机无法打印",
-                description: "发送打印任务后打印机没有反应或显示错误",
+                category: "vehicle",
+                title: "车辆长宽不合格",
+                description: "车辆长宽数据检测不合格故障",
                 solution: {
                     steps: [
-                        "检查打印机电源和连接线是否正常",
-                        "检查打印机是否缺纸或缺墨",
-                        "清除打印机队列中的所有任务，然后重新打印",
-                        "重新安装打印机驱动程序"
+                        "检查车辆车头和车尾点激光"
                     ],
-                    warning: "如果是网络打印机，请确保打印机和计算机在同一网络内"
+                    warning: "注意：确保车辆停放在正确位置，点激光能够准确检测到车头和车尾"
                 }
             },
             {
                 id: 5,
-                category: "computer",
-                title: "电脑运行缓慢",
-                description: "系统响应慢，程序打开时间长，操作卡顿",
+                category: "vehicle",
+                title: "车厢数据偏差不合格",
+                description: "车厢数据检测偏差超出允许范围",
                 solution: {
                     steps: [
-                        "检查任务管理器，关闭占用资源过多的程序",
-                        "运行磁盘清理工具，删除临时文件和无用文件",
-                        "增加内存（RAM）或考虑升级固态硬盘（SSD）",
-                        "执行病毒和恶意软件扫描"
+                        "检查抓手点激光",
+                        "检查车厢内部是否凹凸不平",
+                        "按'装车启动'重新检测，检测合格后故障消除"
                     ],
-                    warning: "定期维护电脑可以避免性能下降，建议每月执行一次磁盘清理和碎片整理"
+                    warning: "注意：车厢内部不平整可能导致检测数据偏差，需确保车厢内部平整"
                 }
             },
             {
                 id: 6,
-                category: "network",
-                title: "无法访问特定网站",
-                description: "部分网站打不开，但其他网站可以正常访问",
+                category: "vehicle",
+                title: "停车Y值不合格",
+                description: "车辆停车位置Y值检测不合格",
                 solution: {
                     steps: [
-                        "尝试使用其他浏览器访问同一网站",
-                        "清除浏览器缓存和Cookie",
-                        "检查防火墙或安全软件是否阻止了该网站",
-                        "尝试更改DNS服务器（如使用8.8.8.8和8.8.4.4）"
+                        "4#车道车头车尾Y值范围：400-800mm",
+                        "4#车道车头与车尾Y值偏差大于250mm",
+                        "5#车道小车（栏板低于1200mm）车头车尾Y值范围：450-960mm",
+                        "5#车道小车（栏板高于1200mm）车头车尾Y值范围：550-960mm",
+                        "5#车道车头与车尾Y值偏差大于250mm"
                     ],
-                    warning: "如果使用VPN，请尝试关闭VPN后访问；如果网站被当地封锁，可能需要使用代理"
+                    warning: "注意：不同车道、不同栏板高度的车辆Y值范围不同，需根据具体情况判断"
                 }
             },
             {
                 id: 7,
-                category: "software",
-                title: "操作系统更新失败",
-                description: "系统更新过程中出现错误，无法完成更新",
+                category: "vehicle",
+                title: "栏板高度不合格",
+                description: "车辆栏板高度检测不合格",
                 solution: {
                     steps: [
-                        "确保有足够的磁盘空间（至少20GB可用空间）",
-                        "暂时关闭防病毒软件和防火墙",
-                        "运行Windows更新疑难解答（针对Windows系统）",
-                        "手动下载更新包并离线安装"
+                        "检查抓手车底点激光",
+                        "栏板高度不在范围（500-1600mm）内"
                     ],
-                    warning: "在进行重大更新前，请务必备份重要数据，以防更新失败导致数据丢失"
+                    warning: "注意：栏板高度超出允许范围可能导致装车过程出现问题"
                 }
             },
             {
                 id: 8,
-                category: "device",
-                title: "手机电池耗电过快",
-                description: "手机电池电量下降迅速，需要频繁充电",
+                category: "vehicle",
+                title: "尾板X值不合格",
+                description: "车辆尾板X值检测不合格",
                 solution: {
                     steps: [
-                        "检查电池使用情况，找出耗电最多的应用",
-                        "降低屏幕亮度，缩短屏幕自动关闭时间",
-                        "关闭不必要的后台应用和定位服务",
-                        "启用省电模式，关闭动画和视觉效果"
+                        "检查抓手车尾点激光",
+                        "检查停车是否靠近极限开关位置"
                     ],
-                    warning: "如果电池已使用超过2年，可能是电池老化，建议更换电池"
+                    warning: "注意：车辆停车位置不当可能导致尾板X值检测不合格"
+                }
+            },
+            {
+                id: 9,
+                category: "belt",
+                title: "皮带过载故障",
+                description: "皮带过载报警排查，包括主线皮带和车道皮带",
+                solution: {
+                    steps: [
+                        "电机线缆是否正常",
+                        "电机运行是否卡顿或者异响，可检测一下运行时电流变化",
+                        "排查是否人员断电未开启空开"
+                    ],
+                    warning: "注意：皮带过载故障分为主线皮带过载和车道皮带过载，需根据具体位置排查对应电机"
+                }
+            },
+            {
+                id: 10,
+                category: "belt",
+                title: "主线皮带过载",
+                description: "主线皮带过载故障处理",
+                solution: {
+                    steps: [
+                        "主皮带过载",
+                        "分道升降变频器报警",
+                        "分道皮带变频器报警"
+                    ],
+                    warning: "注意：主线皮带过载可能影响整个装车系统的正常运行"
+                }
+            },
+            {
+                id: 11,
+                category: "belt",
+                title: "车道皮带过载",
+                description: "车道皮带过载故障处理，包括1#和2#车道",
+                solution: {
+                    steps: [
+                        "1#车道皮带过载：抓取皮带电机故障、接料皮带电机过载、斜皮带电机过载、拐弯皮带电机过载",
+                        "2#车道皮带过载：抓取皮带电机故障、接料皮带电机过载、斜皮带电机过载、拐弯皮带电机过载、入口电机过载"
+                    ],
+                    warning: "注意：不同车道的皮带过载故障可能涉及不同位置的电机，需根据具体车道排查"
+                }
+            },
+            {
+                id: 12,
+                category: "other",
+                title: "刷卡机刷不上数据",
+                description: "刷卡机无法读取数据故障排查",
+                solution: {
+                    steps: [
+                        "查看网线是否正常，可观察刷卡机网络等是否正常闪烁",
+                        "观察设备是否供电正常，是否送电",
+                        "中南智能软件内，刷卡服务—>停止服务--->启动服务，重新刷卡"
+                    ],
+                    warning: "临时处理措施：可手动输入计划包数，按'装车启动'启动装车"
+                }
+            },
+            {
+                id: 13,
+                category: "other",
+                title: "计数不准处理",
+                description: "装车计数不准确问题排查",
+                solution: {
+                    steps: [
+                        "排查入口对射开关是否正对上",
+                        "排查是否有水泥包或者其他东西遮挡",
+                        "未堵料，请检查对射开关镜面是否积灰，清灰处理并吹气",
+                        "检查吹气装置是否正对对射开关正面",
+                        "检查传感器是否正常"
+                    ],
+                    warning: "注意：当来料计数小于实际装包数表示计数不准，会出现装车完成后皮带留包现象；当来料包数到达计划包数是机器人装车一直等待车道来包，表示车道内少包，临时措施：将装车实际包数+抓取辊道包数输入到'来料包数'，等另一车道装车完成后，会自动放包过来"
+                }
+            },
+            {
+                id: 14,
+                category: "other",
+                title: "溜车故障",
+                description: "车辆溜车故障排查",
+                solution: {
+                    steps: [
+                        "观察触摸屏主画面是否存在溜车问题",
+                        "排查溜车点激光",
+                        "车辆无问题，点激光问题可点击'防溜车屏蔽'"
+                    ],
+                    warning: "注意：溜车可能导致安全事故，需及时处理"
+                }
+            },
+            {
+                id: 15,
+                category: "other",
+                title: "气压故障",
+                description: "气压系统故障排查",
+                solution: {
+                    steps: [
+                        "观察二楼平台气压表是否在设定值范围内",
+                        "排查是否断气",
+                        "排查是否存在漏气"
+                    ],
+                    warning: "注意：气压不足可能导致设备无法正常工作"
+                }
+            },
+            {
+                id: 16,
+                category: "other",
+                title: "急停故障",
+                description: "急停系统故障排查",
+                solution: {
+                    steps: [
+                        "排查急停按钮是否按下：HMI急停故障、MCP急停故障、机器人急停故障、安全继电器未得电"
+                    ],
+                    warning: "注意：急停故障需立即处理，确保设备安全"
                 }
             }
         ];
@@ -571,26 +677,35 @@
                     let categoryIcon, categoryName, categoryColor;
                     
                     switch(issue.category) {
-                        case 'computer':
-                            categoryIcon = 'fas fa-desktop';
-                            categoryName = '电脑故障';
-                            categoryColor = '#3498db';
+                        case 'blockage':
+                            categoryIcon = 'fas fa-exclamation-triangle';
+                            categoryName = '堵料报警';
+                            categoryColor = '#e74c3c'; // 红色
                             break;
-                        case 'network':
-                            categoryIcon = 'fas fa-wifi';
-                            categoryName = '网络问题';
-                            categoryColor = '#9b59b6';
+                        case 'robot':
+                            categoryIcon = 'fas fa-robot';
+                            categoryName = '机器人故障';
+                            categoryColor = '#3498db'; // 蓝色
                             break;
-                        case 'software':
-                            categoryIcon = 'fas fa-code';
-                            categoryName = '软件错误';
-                            categoryColor = '#e74c3c';
+                        case 'vehicle':
+                            categoryIcon = 'fas fa-truck';
+                            categoryName = '车辆检测故障';
+                            categoryColor = '#9b59b6'; // 紫色
                             break;
-                        case 'device':
-                            categoryIcon = 'fas fa-mobile-alt';
-                            categoryName = '设备问题';
-                            categoryColor = '#2ecc71';
+                        case 'belt':
+                            categoryIcon = 'fas fa-cogs';
+                            categoryName = '皮带过载故障';
+                            categoryColor = '#e67e22'; // 橙色
                             break;
+                        case 'other':
+                            categoryIcon = 'fas fa-tools';
+                            categoryName = '其他故障';
+                            categoryColor = '#2ecc71'; // 绿色
+                            break;
+                        default:
+                            categoryIcon = 'fas fa-question-circle';
+                            categoryName = '其他';
+                            categoryColor = '#7f8c8d'; // 灰色
                     }
                     
                     // 创建故障卡片
